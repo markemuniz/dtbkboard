@@ -440,7 +440,7 @@
         <h2>Trivia</h2>
         <label class="a-row" for="builtinTrivia" style="font-size:15px">
           <input type="checkbox" id="builtinTrivia" style="width:20px;height:20px">
-          Include the built-in trivia (13 Downtown Brooklyn + 20 cannabis questions)
+          Include the built-in trivia (25 Downtown Brooklyn + 20 cannabis questions)
         </label>
         <form id="triviaForm" class="a-grid2">
           <div class="a-field" style="grid-column:1/-1">
@@ -652,7 +652,19 @@
     { q: 'Which neighborhood next door became NYC\'s very first historic district in 1965?', a: 'Brooklyn Heights' },
     { q: "Which poet first printed 'Leaves of Grass' in Brooklyn in 1855?", a: 'Walt Whitman' },
     { q: "Fort Greene Park's tall monument honors prisoners from which war?", a: 'The Revolutionary War' },
-    { q: 'The hidden Atlantic Avenue Tunnel, often called the oldest subway tunnel in the world, was built in what year?', a: '1844' }
+    { q: 'The hidden Atlantic Avenue Tunnel, often called the oldest subway tunnel in the world, was built in what year?', a: '1844' },
+    { q: 'Which Fort Greene arts center, founded in 1861, is one of the oldest performing arts centers in the US?', a: 'BAM (Brooklyn Academy of Music)' },
+    { q: 'Which showman walked 21 elephants across the Brooklyn Bridge in 1884 to prove it was safe?', a: 'P.T. Barnum' },
+    { q: 'Who helped finish the Brooklyn Bridge and was the first person to ride across it?', a: 'Emily Roebling' },
+    { q: 'Before it was Macy\'s, the big department store on Fulton Street was which Brooklyn store?', a: 'Abraham & Straus (A&S)' },
+    { q: 'Fort Greene Park was designed by the same duo who designed which famous park?', a: 'Central Park' },
+    { q: 'Which baseball team wanted a new stadium at Atlantic and Flatbush in the 1950s, then left for LA?', a: 'The Brooklyn Dodgers' },
+    { q: "What gives Barclays Center its rusty brown look?", a: 'Weathering steel panels, about 12,000 of them' },
+    { q: 'Which railroad has its Brooklyn terminal at Atlantic Terminal?', a: 'The LIRR (Long Island Rail Road)' },
+    { q: 'Which nearby canal became a federal Superfund cleanup site in 2010?', a: 'The Gowanus Canal' },
+    { q: 'How many subway lines stop at Atlantic Av-Barclays Ctr?', a: 'Nine: 2, 3, 4, 5, B, D, N, Q, R' },
+    { q: 'Which Atlantic Ave Middle Eastern grocery has been on the block since 1948?', a: "Sahadi's" },
+    { q: 'The Brooklyn Paramount, built in 1928, reopened as a concert hall in what year?', a: '2024' }
   ];
   function triviaList() {
     var custom = vals(DATA.trivia).filter(function (x) { return x && x.q && x.a; })
@@ -1363,7 +1375,7 @@
     return r;
   }
 
-  // Weather for Downtown Brooklyn from Open-Meteo (free, no key). Refreshed every 15 minutes.
+  // Weather for Downtown Brooklyn (11217) from Open-Meteo (free, no key). Refreshed every 15 minutes.
   function wxInfo(code, isDay) {
     code = Number(code);
     if (code === 0) return isDay ? ['☀️', 'SUNNY', 'Y'] : ['🌙', 'CLEAR', 'B'];
@@ -1570,7 +1582,22 @@
     "Walt Whitman worked as editor of the Brooklyn Daily Eagle and first printed Leaves of Grass in Brooklyn in 1855.",
     "The Prison Ship Martyrs' Monument in Fort Greene Park honors over 11,000 Americans who died on British prison ships in the Revolutionary War.",
     "The Battle of Brooklyn in August 1776 was the first big battle of the Revolutionary War after the Declaration of Independence.",
-    "If Brooklyn were its own city today, it would be one of the biggest cities in the United States."
+    "If Brooklyn were its own city today, it would be one of the biggest cities in the United States.",
+    "BAM, the Brooklyn Academy of Music, was founded in 1861. Its Fort Greene home on Lafayette Ave opened in 1908.",
+    "In 1884, P.T. Barnum walked 21 elephants across the Brooklyn Bridge to show people it was safe.",
+    "Emily Roebling helped finish the Brooklyn Bridge after her husband, its chief engineer, got sick. She was the first to ride across it.",
+    "The Macy's on Fulton Street started out as Abraham & Straus, a Brooklyn department store founded in 1865.",
+    "Fort Greene Park was designed by Frederick Law Olmsted and Calvert Vaux, the same team behind Central Park.",
+    "In the 1950s the Brooklyn Dodgers wanted a new stadium at Atlantic and Flatbush, near where Barclays Center stands now.",
+    "Barclays Center's rusty look comes from about 12,000 weathering steel panels.",
+    "Atlantic Terminal is the Long Island Rail Road's Brooklyn terminal, and nine subway lines stop at Atlantic Av-Barclays Ctr.",
+    "The Gowanus Canal, a few blocks from here, was named a federal Superfund cleanup site in 2010.",
+    "Sahadi's has been selling nuts, spices and Middle Eastern groceries on Atlantic Ave since 1948.",
+    "The Brooklyn Paramount on Flatbush opened in 1928 as a movie palace and reopened as a concert hall in 2024.",
+    "The Brooklyn Heights Promenade was built on top of the BQE and opened around 1950. The skyline view is one of the best in the city.",
+    "Brooklyn Borough Hall is the oldest public building in Brooklyn.",
+    "Pratt Institute in nearby Clinton Hill was founded in 1887 by oil businessman Charles Pratt.",
+    "MetroTech Center in Downtown Brooklyn is home to NYU's Tandon School of Engineering."
   ];
   var localFactAt = 0, localFactText = null, localFactNum = 0;
   function localFactPanel(cycle) {
@@ -1924,7 +1951,7 @@
 
     function wxRefresh() {
       if (!window.fetch) return;
-      var url = 'https://api.open-meteo.com/v1/forecast?latitude=40.6928&longitude=-73.9874' +
+      var url = 'https://api.open-meteo.com/v1/forecast?latitude=40.6818&longitude=-73.9790' +
         '&current=temperature_2m,apparent_temperature,weather_code,is_day' +
         '&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max' +
         '&temperature_unit=fahrenheit&timezone=America%2FNew_York&forecast_days=1';
